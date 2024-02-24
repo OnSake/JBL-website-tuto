@@ -44,7 +44,7 @@ let swiperFavorite = new Swiper(".favorite_swiper", {
   centeredSlides: "auto",
   grabCursor: true,
 
-  breakpoins: {
+  breakpoints: {
     768: {
       slidesPerView: 3,
     },
@@ -66,11 +66,13 @@ const sections = document.querySelectorAll("section[id]");
 const scrollActive = () => {
   const scrollDown = window.scrollY;
 
-  sections.forEach(current => {
+  sections.forEach((current) => {
     const sectionHeight = current.offsetHeight,
-          sectionTop = current.offsetTop - 58,
-          sectionid = current.getAttribute("id"),
-          sectionsClass = document.querySelector('.nav_menu a[href*=' + sectionid + ']');
+      sectionTop = current.offsetTop - 58,
+      sectionid = current.getAttribute("id"),
+      sectionsClass = document.querySelector(
+        ".nav_menu a[href*=" + sectionid + "]"
+      );
 
     if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
       sectionsClass.classList.add("active-link");
@@ -82,3 +84,18 @@ const scrollActive = () => {
 
 window.addEventListener("scroll", scrollActive);
 /*=============== SCROLL REVEAL ANIMATION ===============*/
+
+const sr = ScrollReveal({
+  origin: "top",
+  distance: "60px",
+  duration: 1500,
+  delay: 400,
+  reset: true,
+});
+
+sr.reveal(`.home_social, .favorite_container, .sponsor_container, .footer`);
+sr.reveal(`.home_title span:nth-child(1)`, { origin: "left", opacity: 1 });
+sr.reveal(`.home_title span:nth-child(3)`, { origin: "right", opacity: 1 });
+sr.reveal(`.home_tooltip, .home_button, .model_button`, { origin: "bottom" });
+sr.reveal(`.about_data`, { origin: "left" });
+sr.reveal(`.about_img, .model_tooltip`, { origin: "right" });
